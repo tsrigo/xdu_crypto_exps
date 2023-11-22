@@ -21,8 +21,8 @@ def wrap(raw: bytes) -> bytes:
 
 def admincheck(raw: bytes, quiet: bool = False) -> bytes:
     cipher = AES.new(key=_key, mode=AES.MODE_CBC, iv=_iv)
-    # pt = unpad(cipher.decrypt(raw), BLOCK_SIZE)
-    pt = cipher.decrypt(raw)
+    pt = unpad(cipher.decrypt(raw), BLOCK_SIZE)
+    # pt = cipher.decrypt(raw)
     if quiet: 
         print(f"{pt=}")
     return b";admin=true;" in pt
